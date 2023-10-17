@@ -138,8 +138,10 @@ function deplaceVaisseau(e){
     
     if(e.code == "ArrowLeft" && vaisseau.x - vaisseauDeplacementX >= 0){  
         vaisseau.x -= vaisseauDeplacementX;
+        peutTirer = true;
     }else if(e.code == "ArrowRight" && vaisseau.x + vaisseauDeplacementX + vaisseau.largeur <= canvas.width){
         vaisseau.x += vaisseauDeplacementX;
+        peutTirer = true;
     }
 }
     
