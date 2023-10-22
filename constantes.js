@@ -1,3 +1,5 @@
+
+
 //canvas
 let tailleCarreau = 32;
 let lignes = 16;
@@ -46,11 +48,12 @@ let vaisseau = {
 
 
 window.onload = function(){
+
     canvas = document.getElementById("canvas");
     canvas.width = largeurCanvas;
     canvas.height = hauteurCanvas;
     context = canvas.getContext("2d");
-
+    
     //chargement du vaisseau
     vaisseauImage = new Image();
     vaisseauImage.src = "img/vaisseau.png";
@@ -71,7 +74,12 @@ window.onload = function(){
 function update(){
     requestAnimationFrame(update);
     if(gameOver){
-        return alert("game over");
+        const confirmation = window.confirm("Appuyer sur OK pour rejouer ou sur ANNULER pour partir");
+        if(confirmation){
+            location.reload();
+        }else{
+            window.close();
+        }
     }
     context.clearRect(0,0,canvas.width, canvas.height);
     context.drawImage(vaisseauImage, vaisseau.x, vaisseau.y, vaisseau.largeur, vaisseau.hauteur);
@@ -129,6 +137,12 @@ function update(){
     context.fillStyle="white";
     context.font = "16px Courier";
     context.fillText(score, 5, 20);
+    if(window.innerWidth<1024){
+        const fermer = document.querySelector("#fermer-bouton");
+        fermer.addEventListener("click", ()=>{
+            window.close();
+        });
+    }
 }
 
 function deplaceVaisseau(e){
@@ -161,12 +175,12 @@ function creationAlien(){
     }
     nombreAlien = alienArray.length;
 }
+
 function tirVaisseau(e){
     if(gameOver){
         return alert("game over");
     }
     if(e.code == "Space" && peutTirer){ 
-       
         let tir = {
             x: vaisseau.x+largeurVaisseau*15/32,
             y: vaisseau.y,
@@ -179,10 +193,9 @@ function tirVaisseau(e){
         setTimeout(() => {
             peutTirer = true;
         }, 200);
-    }
-
-    
+    } 
 }
+
 function toucheMonstre(a, b){
     return a.x< b.x + b.largeur && a.x + a.largeur > b.x &&a.y < b.y + b.hauteur && a.y + a.hauteur > b.y;
 }

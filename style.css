@@ -6,3 +6,41 @@ body{
 #canvas{
     background-color: black;
 }
+#fenetre-section{
+    display: none;
+}
+@media (max-width: 1024px){
+    #fenetre-section{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(10,10,10,0.7);
+        position: fixed;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        place-items: center;
+        margin: 0;
+        padding: 0;
+    }
+    #fenetre{
+        background-color: white;
+        padding: 2rem;
+        cursor: default;
+    }
+    #fermer-section{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    #fermer-bouton{
+        font-size: 2rem;
+        border: none;
+        background-color: white;
+        font-weight: bold;
+        cursor: pointer;
+        padding: 5px;
+        color: red;
+
+    }
+}
